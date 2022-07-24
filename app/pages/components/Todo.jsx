@@ -58,10 +58,21 @@ function Todo() {
     console.log(todo);
   };
 
-  const updateTodo = async (id) => {
-    console.log(id)
+  const updateTodo = async (e, id) => {
+    e.preventDefault();
+    const form = e.target;
+    const title = form.title.value;
+    const description = form.description.value;
+    const status = form.status.value;
+
     try {
-      await axios.put(API + `todo/${id}`);
+      await axios.put(API + `todo/${id}`, {
+        title,
+        description,
+        status,
+      });
+
+      setTodo({});
       form.reset();
       getTodos();
     } catch (error) {
@@ -89,7 +100,16 @@ function Todo() {
             </div>
           ))}
       </div>
-      <form ref={form} onSubmit={(e) => handleSubmit(e)}>
+      <form
+        ref={form}
+        onSubmit={(e) => {
+          if (todo._id) {
+            updateTodo(e, todo._id);
+          } else {
+            handleSubmit(e);
+          }
+        }}
+      >
         <label htmlFor="title">Title</label>
         <input
           type="text"
@@ -120,9 +140,7 @@ function Todo() {
           done
         </div>
         {todo._id ? (
-          <button type="button" onClick={() => updateTodo(todo._id)}>
-            update task
-          </button>
+          <button type="submit">update task</button>
         ) : (
           <button type="submit">create task</button>
         )}
