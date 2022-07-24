@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import Todo from './components/Todo'
 
 export default function Home() {
   return (
@@ -9,10 +10,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Todo list
-        </h1>
-        <span>Ximra</span>
+        <Todo /> 
       </main>
 
       <footer className={styles.footer}>
