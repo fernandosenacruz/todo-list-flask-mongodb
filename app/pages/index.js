@@ -12,6 +12,7 @@ export default function Home() {
         <h1 className={styles.title}>
           Todo list
         </h1>
+        <span>Ximra</span>
       </main>
 
       <footer className={styles.footer}>
