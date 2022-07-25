@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 app.config["MONGO_URI"] = "mongodb://localhost:27017/todo_list_flask"
 mongo = PyMongo(app)
-CORS(app)
+CORS(app, resources={r"*": {"origins": "*"}})
 db = mongo.db.todo_list_flask
 
 
@@ -41,7 +41,7 @@ def getTodo():
         return jsonify(str(ObjectId(id.inserted_id)))
 
 
-@app.route("/todo/<id>", methods=["DELETE", "PUT"])
+@app.route("/todo/<id>", methods=["GET", "DELETE", "PUT"])
 def deleteTodo(id):
     if request.method == "DELETE":
         db.delete_one({"_id": ObjectId(id)})
@@ -61,3 +61,15 @@ def deleteTodo(id):
         )
 
         return jsonify(message.UPDATED)
+
+    elif request.method == "GET":
+        todo = db.find_one({"_id": ObjectId(id)})
+
+        return jsonify(
+            {
+                "_id": str(ObjectId(todo["_id"])),
+                "title": todo["title"],
+                "description": todo["description"],
+                "status": todo["status"],
+            }
+        )

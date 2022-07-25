@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
+import { FaTrashAlt } from 'react-icons/fa';
+import { ImPencil2 } from 'react-icons/im';
+import { MdOutlinePostAdd } from 'react-icons/md';
 import styles from '../../styles/Home.module.css';
 
 const API = 'http://localhost:5000/';
@@ -81,26 +84,35 @@ function Todo() {
   };
 
   return (
-    <div className="home">
-      <div className="cards__todo">
+    <div className={styles.home}>
+      <div className={styles.cards__todo}>
         {todos &&
           todos?.map((todo) => (
-            <div className="card__todo">
-              <h3>{todo.title}</h3>
+            <div className={styles.card__todo}>
+              <h5>{todo.title}</h5>
               <p>{todo.description}</p>
               <span>{todo.status}</span>
-              <div>
-                <button type="button" onClick={() => update(todo._id)}>
-                  update
+              <div className={styles.container__btn}>
+                <button
+                  className={styles.btn_update}
+                  type="button"
+                  onClick={() => update(todo._id)}
+                >
+                  <ImPencil2 />
                 </button>
-                <button type="button" onClick={() => deleteTodo(todo._id)}>
-                  delete
+                <button
+                  className={styles.btn_delete}
+                  type="button"
+                  onClick={() => deleteTodo(todo._id)}
+                >
+                  <FaTrashAlt />
                 </button>
               </div>
             </div>
           ))}
       </div>
       <form
+        className={styles.form}
         ref={form}
         onSubmit={(e) => {
           if (todo._id) {
@@ -131,7 +143,7 @@ function Todo() {
           required
           defaultValue={todo && todo.description}
         />
-        <div>
+        <div className={styles.radio__btn}>
           <input type="radio" name="status" value="pending" required />
           pending
           <input type="radio" name="status" value="in progress" />
@@ -140,9 +152,13 @@ function Todo() {
           done
         </div>
         {todo._id ? (
-          <button type="submit">update task</button>
+          <button className={styles.btn_update} type="submit">
+            update task
+          </button>
         ) : (
-          <button type="submit">create task</button>
+          <button className={styles.btn_submit} type="submit">
+            <MdOutlinePostAdd />
+          </button>
         )}
       </form>
     </div>
