@@ -14,7 +14,7 @@ export default function Home() {
       </main>
 
       <footer className={styles.footer}>
-        <span>All right reserved</span>
+        <span>FATnando Sena © All right reserved</span>
       </footer>
     </div>
   )
