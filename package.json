@@ -1,0 +1,27 @@
+{
+  "name": "todo-list-flask-mongodb-nextjs",
+  "version": "1.0.0",
+  "description": "Exercício de criação de um todo list em python",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "docker-compose up -d --build",
+    "stop": "docker-compose stop", 
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fernandosenacruz/todo-list-flask-mongodb.git"
+  },
+  "keywords": [
+    "nextjs"
+  ],
+  "author": "fatnando-sena",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fernandosenacruz/todo-list-flask-mongodb/issues"
+  },
+  "homepage": "https://github.com/fernandosenacruz/todo-list-flask-mongodb#readme"
+}

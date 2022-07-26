@@ -88,7 +88,7 @@ function Todo() {
       <div className={styles.cards__todo}>
         {todos &&
           todos?.map((todo) => (
-            <div className={styles.card__todo}>
+            <div className={styles.card__todo} key={todo._id}>
               <h5>{todo.title}</h5>
               <p>{todo.description}</p>
               <span>{todo.status}</span>
